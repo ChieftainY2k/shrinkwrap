@@ -22,11 +22,12 @@ check_errors()
 if [ $# -eq 0 ]
   then
     log_message "No arguments supplied. Usage:"
-    log_message "shrinkwrap.sh myimage.img"
-    log_message "Script will shrink the image to minimal size *in place*."
-    log_message "Be sure to make a copy of the image before running this script."
+    log_message "$0 /path/to/myimage.img"
+    log_message "Script will create partition image and shrink the image to minimal size *in place*."
     exit 1
 fi
+
+set -o pipefail
 set -e
 
 sudo fdisk -l $1
